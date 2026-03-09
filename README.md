@@ -165,4 +165,4 @@ Full interactive docs at `/docs` when the backend is running.
 
 ## License
 
-MIT
+Apache 2.0
