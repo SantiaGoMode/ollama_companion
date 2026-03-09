@@ -1,6 +1,7 @@
 # AI Agent Hub
 
 A desktop-style AI agent management application. Create, configure, and interact with multiple AI agents powered by local Ollama models. Each agent appears as a card on a grid and can be clicked to open a chat panel.
+![Agent Hub](screenshots/Agent_Hub_Home.png)
 
 ## Features
 
