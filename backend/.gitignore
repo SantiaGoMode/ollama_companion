@@ -1,0 +1,7 @@
+venv/
+__pycache__/
+*.pyc
+agents.db
+chroma_data/
+logs/
+.encryption_key
