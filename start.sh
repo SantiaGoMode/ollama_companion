@@ -7,6 +7,42 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 echo "Starting AI Agent Hub..."
 echo ""
 
+# Detect python command
+if command -v python3 &>/dev/null; then
+    PYTHON=python3
+elif command -v python &>/dev/null; then
+    PYTHON=python
+else
+    echo "Error: Python not found. Install Python 3.11+ first."
+    exit 1
+fi
+
+echo "Using: $($PYTHON --version)"
+
+# Backend setup
+cd "$SCRIPT_DIR/backend"
+
+if [ ! -d "venv" ]; then
+    echo "[Backend] Creating virtual environment..."
+    $PYTHON -m venv venv
+fi
+
+source venv/bin/activate
+
+if [ ! -f "venv/.deps_installed" ]; then
+    echo "[Backend] Installing dependencies..."
+    pip install -r requirements.txt -q
+    touch venv/.deps_installed
+fi
+
+# Frontend setup
+cd "$SCRIPT_DIR/frontend"
+
+if [ ! -d "node_modules" ]; then
+    echo "[Frontend] Installing dependencies..."
+    npm install
+fi
+
 # Start backend
 echo "[Backend] Starting FastAPI on port 8000..."
 cd "$SCRIPT_DIR/backend"
